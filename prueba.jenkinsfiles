@@ -1,0 +1,41 @@
+pipeline{
+    agent any
+    environment {
+        INSTAGRAM= "@andresperalta"
+    }
+    
+    stages {
+        stage("Saludo1") {
+            steps {
+                echo "Hola desde Saludo1"
+            }
+        }
+        stage("Saludo2") {
+            steps {
+                echo "Hola desde saludo2, paso 1"
+                echo "Hola desde saludo2, paso 2"
+            }
+        }
+        stage("Imprimir variable de entorno") {
+            steps {
+                echo "${env.INSTAGRAM}"
+                echo "${INSTAGRAM}"
+                echo "$INSTAGRAM"
+                
+                sh "echo 'hola papu'"
+            }
+        }
+        stage("IMprimir variables de entorno definidas en System") {
+            steps{
+                echo "${env.IG}"
+                echo "${IG}"
+                echo "$IG"
+                
+                sh "echo ${env.IG}"
+                sh "echo ${IG}"
+                sh """echo $IG"""
+            }
+            
+        }
+    }
+}
